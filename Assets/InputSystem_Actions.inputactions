@@ -89,8 +89,17 @@
                 },
                 {
                     "name": "MoveHorizontal",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "95f81435-a9b8-4e30-901c-432e66cc3526",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "TimeTravel",
+                    "type": "Button",
+                    "id": "fa646ce5-ea30-44c7-a5f2-8dbac3d230e2",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -581,6 +590,17 @@
                     "action": "MoveHorizontal",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "1f5b746e-9fe5-4523-8880-e32efcd1e60a",
+                    "path": "<Keyboard>/alt",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TimeTravel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },

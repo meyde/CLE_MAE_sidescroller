@@ -13,6 +13,26 @@ public class PlayerControl : MonoBehaviour
     public float moveSpeed =1f;
     public float jumpSpeed = 1f;
     public LayerMask mask;
+    public int temporality;
+    private static PlayerControl _instance;
+
+    void Awake()
+    {
+        this.InstantiatePlayer();
+    }
+
+    private void InstantiatePlayer()
+    {
+        if (_instance == null)
+        {
+            _instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else if (this != _instance)
+        {
+            Destroy(this.gameObject);
+        }
+    }
     void Start()
     {
         moveAction = InputSystem.actions.FindAction("MoveHorizontal");
