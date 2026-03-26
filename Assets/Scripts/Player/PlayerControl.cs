@@ -62,6 +62,10 @@ public class PlayerControl : MonoBehaviour
         if (rayCastHit) { grounded=true; } else { grounded = false; };
         
     }
+    public void OnTimeTravel()
+    {
+        transform.position= new Vector3 (transform.position.x, (transform.position.y + 100) % 300, transform.position.z);
+    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.purple;

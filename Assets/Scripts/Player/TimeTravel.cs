@@ -24,13 +24,4 @@ public class TimeTravel : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-
-    public void OnTimeTravel()
-    {
-        
-        var temporality = (pc.temporality + 1) % 3;
-        SceneManager.LoadScene(temporality);
-        Instantiate(pc,transform.position, Quaternion.identity );
-        pc.temporality = temporality;
-    }
 }

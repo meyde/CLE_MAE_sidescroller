@@ -2,5 +2,5 @@ using UnityEngine;
 
 public class StateManager: MonoBehaviour
 {
-    public int activated = 0;
+    public float activated = 0;
 }
