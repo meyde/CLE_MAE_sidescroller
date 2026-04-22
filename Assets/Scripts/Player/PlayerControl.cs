@@ -43,7 +43,7 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         float moveValue = moveAction.ReadValue<float>();
-        checkGround();
+        CheckGround();
         if (grounded)
         {
             rb.linearVelocityX += (moveValue * moveSpeed);
@@ -56,7 +56,7 @@ public class PlayerControl : MonoBehaviour
         }
             rb.linearVelocity = new Vector2(Mathf.Clamp(rb.linearVelocityX, -maxMoveSpeed, maxMoveSpeed), Mathf.Clamp(rb.linearVelocityY, -maxJumpSpeed, maxJumpSpeed));
     }
-    private void checkGround() 
+    private void CheckGround() 
     {
         var rayCastHit = Physics2D.Raycast(transform.position, new Vector2(0, -1), 1.1f, mask);
         if (rayCastHit) { grounded=true; } else { grounded = false; };
@@ -64,6 +64,7 @@ public class PlayerControl : MonoBehaviour
     }
     public void OnTimeTravel()
     {
+        Debug.Log("Switching timeline");
         transform.position= new Vector3 (transform.position.x, (transform.position.y + 100) % 300, transform.position.z);
     }
     private void OnDrawGizmos()
