@@ -4,8 +4,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerControl : MonoBehaviour
 {
+    [SerializeField] private TimeManager tm;
     private InputAction moveAction;
     private InputAction jumpAction;
+    [SerializeField] private InputActionAsset iua;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private bool grounded= true;
     [SerializeField] private float maxMoveSpeed = 3f;
@@ -15,6 +17,7 @@ public class PlayerControl : MonoBehaviour
     public LayerMask mask;
     public int temporality;
     private static PlayerControl _instance;
+    
 
     void Awake()
     {
@@ -35,13 +38,14 @@ public class PlayerControl : MonoBehaviour
     }
     void Start()
     {
-        moveAction = InputSystem.actions.FindAction("MoveHorizontal");
-        jumpAction = InputSystem.actions.FindAction("Jump");
+        moveAction = iua.FindAction("Move");
+        jumpAction = iua.FindAction("Jump");
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (tm.paused || tm.rewinding) return;
         float moveValue = moveAction.ReadValue<float>();
         CheckGround();
         if (grounded)

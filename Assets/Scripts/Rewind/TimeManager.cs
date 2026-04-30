@@ -3,13 +3,19 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class TimeManager : MonoBehaviour
 {
     public List<float[]>[] backlog;
     public List<GameObject> logables;
     private int index = 0;
-    private int logSize = 10;
+    private int logSize = 12;
+    private int charged = 0;
+
+    public bool paused = false ;
+    public bool rewinding = false ;
+    private int timeRewinded;
 
 
     private void Awake()
@@ -24,7 +30,7 @@ public class TimeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(backlog[0][0][0]);
+
     }
 
     public float[] Encode(GameObject toEncode)
@@ -37,20 +43,74 @@ public class TimeManager : MonoBehaviour
     {
         while (true)
         {
-            var encodedList = new List<float[]>();
-            foreach (var go in logables)
-            { encodedList.Add(Encode(go)); }
-            ;
-
-            backlog[index % logSize] = encodedList;
-            index++;
-            yield return new WaitForSeconds(1);
+            if (paused) { yield return new WaitForSeconds(1); }
+            else
+            {
+                var encodedList = new List<float[]>();
+                foreach (var go in logables)
+                { encodedList.Add(Encode(go)); }
+                backlog[index] = encodedList;
+                index = (index + 1) % logSize;
+                charged = Mathf.Clamp(charged + 1, 0, logSize);
+                yield return new WaitForSeconds(1);
+            }
         }
     }
+
+    public void OnRewinding( InputValue value)
+    {
+        if (!rewinding) return;
+        float vlue = value.Get<float>();
+        Debug.Log(charged.ToString());
+        if (vlue < 0) { timeRewinded = Mathf.Clamp(timeRewinded + 1, 0, charged); }
+        if (vlue > 0) { timeRewinded = Mathf.Clamp(timeRewinded - 1, 0, charged); }
+        Debug.Log(timeRewinded);
+        RewindTime(timeRewinded);
+    }   
+
     public void OnRewind()
     {
-        var encodedList = backlog[(index + 5) % logSize];
-        for (int i = 0; i < backlog.Length; i++)
+        if (!rewinding)
+        {
+            timeRewinded = 0;
+            paused = true;
+            rewinding = true;
+            foreach (var go in logables)
+            {
+                Rigidbody2D rb = go.GetComponent<Rigidbody2D>();
+                if (rb != null)
+                {
+                    rb.bodyType = RigidbodyType2D.Static;
+                }
+            }
+        }
+        else
+        {
+            paused = false;
+            rewinding = false;
+            foreach (var go in logables)
+            {
+                Rigidbody2D rb = go.GetComponent<Rigidbody2D>();
+                if (rb != null)
+                {
+                    rb.bodyType = RigidbodyType2D.Dynamic;
+                }
+            }
+            charged -= timeRewinded;
+            index -= timeRewinded;
+        }
+        
+    }
+
+    public void ForcedRewind()
+    {
+        OnRewind();
+    }
+    public void RewindTime(int time)
+    {
+        var encodedList = backlog[(index + logSize-time) % logSize];
+        if (encodedList == null) return;
+        for (int i = 0; i < logables.Count; i++)
         {
             var go = logables[i];
             var encoded = encodedList[i];
