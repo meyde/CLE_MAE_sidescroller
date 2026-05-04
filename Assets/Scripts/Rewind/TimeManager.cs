@@ -17,7 +17,14 @@ public class TimeManager : MonoBehaviour
     public bool rewinding = false ;
     private int timeRewinded;
 
-
+    static void timer(int timeToWait)
+    {
+        var currentTime = 0f;
+        while (currentTime < timeToWait)
+        {
+            currentTime += Time.deltaTime;
+        }
+    }
 
     private void Awake()
     {
