@@ -18,6 +18,7 @@ public class TimeManager : MonoBehaviour
     private int timeRewinded;
 
 
+
     private void Awake()
     {
         backlog= new List<float[]>[logSize];
@@ -43,7 +44,7 @@ public class TimeManager : MonoBehaviour
     {
         while (true)
         {
-            if (paused) { yield return new WaitForSeconds(1); }
+            if (paused || rewinding) { yield return new WaitForSeconds(1); }
             else
             {
                 var encodedList = new List<float[]>();
@@ -60,6 +61,8 @@ public class TimeManager : MonoBehaviour
     public void OnRewinding( InputValue value)
     {
         if (!rewinding) return;
+        if (paused) return;
+        if (charged < 1) return;
         float vlue = value.Get<float>();
         Debug.Log(charged.ToString());
         if (vlue < 0) { timeRewinded = Mathf.Clamp(timeRewinded + 1, 0, charged); }
@@ -70,10 +73,10 @@ public class TimeManager : MonoBehaviour
 
     public void OnRewind()
     {
+        if (paused) return;
         if (!rewinding)
         {
             timeRewinded = 0;
-            paused = true;
             rewinding = true;
             foreach (var go in logables)
             {
@@ -86,7 +89,6 @@ public class TimeManager : MonoBehaviour
         }
         else
         {
-            paused = false;
             rewinding = false;
             foreach (var go in logables)
             {
@@ -118,6 +120,4 @@ public class TimeManager : MonoBehaviour
             go.GetComponent<StateManager>().activated = encoded[2];
         }
     }
-
-
 }

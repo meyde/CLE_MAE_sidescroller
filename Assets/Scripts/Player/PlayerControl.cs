@@ -68,6 +68,7 @@ public class PlayerControl : MonoBehaviour
     }
     public void OnTimeTravel()
     {
+        if (tm.paused || tm.rewinding) return;
         Debug.Log("Switching timeline");
         transform.position= new Vector3 (transform.position.x, (transform.position.y + 100) % 300, transform.position.z);
     }
