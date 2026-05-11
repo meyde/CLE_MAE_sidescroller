@@ -7,8 +7,8 @@ using UnityEngine.InputSystem;
 
 public class TimeManager : MonoBehaviour
 {
-    public List<float[]>[] backlog;
-    public List<GameObject> logables;
+    public float[][] backlog;
+    [SerializeField] PlayerControl player;
     private int index = 0;
     private int logSize = 12;
     private int charged = 0;
@@ -17,18 +17,20 @@ public class TimeManager : MonoBehaviour
     public bool rewinding = false ;
     private int timeRewinded;
 
-    static void timer(int timeToWait)
+    static void timer(bool flag, float timeToWait)
     {
         var currentTime = 0f;
         while (currentTime < timeToWait)
         {
             currentTime += Time.deltaTime;
         }
+        flag = true;
     }
 
+    
     private void Awake()
     {
-        backlog= new List<float[]>[logSize];
+        backlog= new float[logSize][];
     }
     void Start()
     {
@@ -41,9 +43,9 @@ public class TimeManager : MonoBehaviour
 
     }
 
-    public float[] Encode(GameObject toEncode)
+    public float[] EncodePlayer(PlayerControl toEncode)
     {
-        var encoded = new float[3] { toEncode.transform.position.x, toEncode.transform.position.y, toEncode.GetComponent<StateManager>().activated };
+        var encoded = new float[3] { toEncode.transform.position.x, toEncode.transform.position.y, toEncode.temporality };
         return encoded;
     }
 
@@ -54,10 +56,8 @@ public class TimeManager : MonoBehaviour
             if (paused || rewinding) { yield return new WaitForSeconds(1); }
             else
             {
-                var encodedList = new List<float[]>();
-                foreach (var go in logables)
-                { encodedList.Add(Encode(go)); }
-                backlog[index] = encodedList;
+                float[] encodedPlayer = EncodePlayer(player);
+                backlog[index] = encodedPlayer;
                 index = (index + 1) % logSize;
                 charged = Mathf.Clamp(charged + 1, 0, logSize);
                 yield return new WaitForSeconds(1);
@@ -85,28 +85,14 @@ public class TimeManager : MonoBehaviour
         {
             timeRewinded = 0;
             rewinding = true;
-            foreach (var go in logables)
-            {
-                Rigidbody2D rb = go.GetComponent<Rigidbody2D>();
-                if (rb != null)
-                {
-                    rb.bodyType = RigidbodyType2D.Static;
-                }
-            }
+            player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         }
         else
         {
             rewinding = false;
-            foreach (var go in logables)
-            {
-                Rigidbody2D rb = go.GetComponent<Rigidbody2D>();
-                if (rb != null)
-                {
-                    rb.bodyType = RigidbodyType2D.Dynamic;
-                }
-            }
+            player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
             charged -= timeRewinded;
-            index -= timeRewinded;
+            index = (index-timeRewinded) % logSize;
         }
         
     }
@@ -117,14 +103,11 @@ public class TimeManager : MonoBehaviour
     }
     public void RewindTime(int time)
     {
-        var encodedList = backlog[(index + logSize-time) % logSize];
-        if (encodedList == null) return;
-        for (int i = 0; i < logables.Count; i++)
-        {
-            var go = logables[i];
-            var encoded = encodedList[i];
-            go.transform.position = new Vector3(encoded[0], encoded[1], 0);
-            go.GetComponent<StateManager>().activated = encoded[2];
-        }
+        float[] encodedPastPlayer = backlog[(index + logSize-time) % logSize];
+        if (encodedPastPlayer == null) return;
+        player.transform.position = new Vector3(encodedPastPlayer[0], encodedPastPlayer[1], player.transform.position.z);
+        player.temporality = Mathf.FloorToInt(encodedPastPlayer[2]);
+        player.OnChangedTimeline(Mathf.FloorToInt(encodedPastPlayer[2]));
+
     }
 }

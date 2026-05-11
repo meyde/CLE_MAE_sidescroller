@@ -16,26 +16,8 @@ public class PlayerControl : MonoBehaviour
     public float jumpSpeed = 1f;
     public LayerMask mask;
     public int temporality;
-    private static PlayerControl _instance;
-    
+    [SerializeField] GameObject[] TimelineFathers;
 
-    void Awake()
-    {
-        this.InstantiatePlayer();
-    }
-
-    private void InstantiatePlayer()
-    {
-        if (_instance == null)
-        {
-            _instance = this;
-            DontDestroyOnLoad(this);
-        }
-        else if (this != _instance)
-        {
-            Destroy(this.gameObject);
-        }
-    }
     void Start()
     {
         moveAction = iua.FindAction("Move");
@@ -45,6 +27,11 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        PlayerMovement();
+    }
+
+    private void PlayerMovement()
+    {
         if (tm.paused || tm.rewinding) return;
         float moveValue = moveAction.ReadValue<float>();
         CheckGround();
@@ -52,13 +39,13 @@ public class PlayerControl : MonoBehaviour
         {
             rb.linearVelocityX += (moveValue * moveSpeed);
             float upValue = jumpAction.ReadValue<float>();
-            rb.linearVelocityY+=( upValue * jumpSpeed);            
+            rb.linearVelocityY += (upValue * jumpSpeed);
         }
-        else 
-        {    
-            rb.linearVelocityX += (moveValue * moveSpeed/20);
+        else
+        {
+            rb.linearVelocityX += (moveValue * moveSpeed / 20);
         }
-            rb.linearVelocity = new Vector2(Mathf.Clamp(rb.linearVelocityX, -maxMoveSpeed, maxMoveSpeed), Mathf.Clamp(rb.linearVelocityY, -maxJumpSpeed, maxJumpSpeed));
+        rb.linearVelocity = new Vector2(Mathf.Clamp(rb.linearVelocityX, -maxMoveSpeed, maxMoveSpeed), Mathf.Clamp(rb.linearVelocityY, -maxJumpSpeed, maxJumpSpeed));
     }
     private void CheckGround() 
     {
@@ -66,11 +53,43 @@ public class PlayerControl : MonoBehaviour
         if (rayCastHit) { grounded=true; } else { grounded = false; };
         
     }
+    public void OnChangedTimeline(int timeline)
+    {
+        switch (timeline)
+        {
+            case 0:
+                {
+                    TimelineFathers[0].SetActive(true);
+                    TimelineFathers[1].SetActive(false);
+                    TimelineFathers[2].SetActive(false);
+                    break;
+                }
+            case 1:
+                {
+                    TimelineFathers[0].SetActive(false);
+                    TimelineFathers[1].SetActive(true);
+                    TimelineFathers[2].SetActive(false);
+                    break;
+                }
+            case 2:
+                {
+                    TimelineFathers[0].SetActive(false);
+                    TimelineFathers[1].SetActive(false);
+                    TimelineFathers[2].SetActive(true);
+                    break;
+                }
+            default:
+                {
+                    Debug.Log("temporalité non existente"); break;
+                }
+        }
+    }
     public void OnTimeTravel()
     {
         if (tm.paused || tm.rewinding) return;
         Debug.Log("Switching timeline");
-        transform.position= new Vector3 (transform.position.x, (transform.position.y + 100) % 300, transform.position.z);
+        temporality = (temporality + 1) % 3;
+        OnChangedTimeline(temporality);
     }
     private void OnDrawGizmos()
     {
