@@ -17,6 +17,9 @@ public class PlayerControl : MonoBehaviour
     public LayerMask mask;
     public int temporality;
     [SerializeField] GameObject[] TimelineFathers;
+    public Interactable interactingWith = null;
+    public float level1LeverActive = 0f;
+    public float level3State; //0f: start, 1f: seed picked up; 2f: seed planted
 
     void Start()
     {
@@ -91,6 +94,15 @@ public class PlayerControl : MonoBehaviour
         temporality = (temporality + 1) % 3;
         OnChangedTimeline(temporality);
     }
+
+    public void OnInteract()
+    {
+        if (tm.paused || tm.rewinding || interactingWith == null) return;
+        Debug.Log("Interactiontried");
+        interactingWith.Interaction();
+    }
+
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.purple;

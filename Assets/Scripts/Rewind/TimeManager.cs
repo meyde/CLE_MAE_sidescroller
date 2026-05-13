@@ -5,27 +5,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 public class TimeManager : MonoBehaviour
 {
     public float[][] backlog;
-    [SerializeField] PlayerControl player;
-    private int index = 0;
-    private int logSize = 12;
+    [SerializeField] public PlayerControl player;
+    public int index = 0;
+    public int logSize = 12;
     private int charged = 0;
 
     public bool paused = false ;
     public bool rewinding = false ;
     private int timeRewinded;
-
-    static void timer(bool flag, float timeToWait)
-    {
-        var currentTime = 0f;
-        while (currentTime < timeToWait)
-        {
-            currentTime += Time.deltaTime;
-        }
-        flag = true;
-    }
+    
 
     
     private void Awake()
@@ -43,10 +35,12 @@ public class TimeManager : MonoBehaviour
 
     }
 
-    public float[] EncodePlayer(PlayerControl toEncode)
+    public virtual float[] EncodePlayer(PlayerControl toEncode)
     {
-        var encoded = new float[3] { toEncode.transform.position.x, toEncode.transform.position.y, toEncode.temporality };
-        return encoded;
+        //var encoded = new float[3] { toEncode.transform.position.x, toEncode.transform.position.y, toEncode.temporality}; //, toEncode.level1LeverActive, level2tdm.currentTime
+        //return encoded;
+        Debug.Log("Warning: using the parent function it should have been overriden");
+        return new float[3]; // this should never happen
     }
 
     public IEnumerator Loging()
@@ -59,7 +53,7 @@ public class TimeManager : MonoBehaviour
                 float[] encodedPlayer = EncodePlayer(player);
                 backlog[index] = encodedPlayer;
                 index = (index + 1) % logSize;
-                charged = Mathf.Clamp(charged + 1, 0, logSize);
+                charged = Mathf.Clamp(charged + 1, 0, logSize-1);
                 yield return new WaitForSeconds(1);
             }
         }
@@ -83,31 +77,58 @@ public class TimeManager : MonoBehaviour
         if (paused) return;
         if (!rewinding)
         {
+            Debug.Log("RewindStarted");
             timeRewinded = 0;
             rewinding = true;
             player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         }
         else
         {
+            Debug.Log("Rewind Over");
             rewinding = false;
             player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
             charged -= timeRewinded;
-            index = (index-timeRewinded) % logSize;
+            index -= timeRewinded;
+            if (index < 0) { index += logSize; }
         }
         
     }
 
     public void ForcedRewind()
     {
-        OnRewind();
+        Debug.Log("Rewind forcé");
+        timeRewinded = 0;
+        rewinding = true;
+        player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
     }
-    public void RewindTime(int time)
+    public virtual void RewindTime(int time)
     {
-        float[] encodedPastPlayer = backlog[(index + logSize-time) % logSize];
-        if (encodedPastPlayer == null) return;
-        player.transform.position = new Vector3(encodedPastPlayer[0], encodedPastPlayer[1], player.transform.position.z);
-        player.temporality = Mathf.FloorToInt(encodedPastPlayer[2]);
-        player.OnChangedTimeline(Mathf.FloorToInt(encodedPastPlayer[2]));
+        //int pastIndex = (index - time-1);
+        //if (pastIndex < 0) { pastIndex += logSize; }
+        //float[] encodedPastPlayer = backlog[pastIndex];
+        //if (encodedPastPlayer == null) return;
+        //player.transform.position = new Vector3(encodedPastPlayer[0], encodedPastPlayer[1], player.transform.position.z);
+        //player.temporality = Mathf.FloorToInt(encodedPastPlayer[2]);
+        //player.OnChangedTimeline(Mathf.FloorToInt(encodedPastPlayer[2]));
+        //if (encodedPastPlayer[3] != player.level1LeverActive)
+        //{
+        //    level1Lever.activated = false;
+        //    level1Cage.SetActive(true);
+        //    player.level1LeverActive = 0f;
+        //}
+        //if (encodedPastPlayer[4] != level2tdm.currentTime)
+        //{
+        //    if (encodedPastPlayer[4] == 0) 
+        //    { 
+        //        level2tdm.isOpen = false; level2tdm.door.SetActive(true); 
+        //    }
+        //    else 
+        //    { 
+        //        level2tdm.isOpen = true; level2tdm.door.SetActive(false); 
+        //    }
+        //    level2tdm.currentTime = Mathf.FloorToInt(encodedPastPlayer[4]);
+
+        //}
 
     }
 }
