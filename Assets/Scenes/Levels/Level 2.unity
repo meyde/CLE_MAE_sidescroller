@@ -634,7 +634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0950edb4fdeacc642b154838af70a004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Freeze
-  tm: {fileID: 0}
+  tm: {fileID: 1150443945}
 --- !u!61 &151332595
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -922,7 +922,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0950edb4fdeacc642b154838af70a004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Freeze
-  tm: {fileID: 0}
+  tm: {fileID: 1150443945}
 --- !u!61 &265950364
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1889,7 +1889,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0950edb4fdeacc642b154838af70a004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Freeze
-  tm: {fileID: 0}
+  tm: {fileID: 1150443945}
 --- !u!61 &473401681
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2040,7 +2040,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0950edb4fdeacc642b154838af70a004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Freeze
-  tm: {fileID: 0}
+  tm: {fileID: 1150443945}
 --- !u!61 &504714916
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2237,7 +2237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0950edb4fdeacc642b154838af70a004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Freeze
-  tm: {fileID: 0}
+  tm: {fileID: 1150443945}
 --- !u!1 &553749102
 GameObject:
   m_ObjectHideFlags: 0
@@ -2479,7 +2479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0950edb4fdeacc642b154838af70a004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Freeze
-  tm: {fileID: 0}
+  tm: {fileID: 1150443945}
 --- !u!61 &560371050
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3307,7 +3307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0950edb4fdeacc642b154838af70a004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Freeze
-  tm: {fileID: 0}
+  tm: {fileID: 1150443945}
 --- !u!61 &792507111
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3909,7 +3909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0950edb4fdeacc642b154838af70a004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Freeze
-  tm: {fileID: 0}
+  tm: {fileID: 1150443945}
 --- !u!61 &936953874
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4283,7 +4283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0950edb4fdeacc642b154838af70a004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Freeze
-  tm: {fileID: 0}
+  tm: {fileID: 1150443945}
 --- !u!1 &1099499464
 GameObject:
   m_ObjectHideFlags: 0
@@ -4806,6 +4806,7 @@ GameObject:
   - component: {fileID: 1217850692}
   - component: {fileID: 1217850693}
   - component: {fileID: 1217850694}
+  - component: {fileID: 1217850695}
   m_Layer: 0
   m_Name: Anomaly A2
   m_TagString: Untagged
@@ -4822,7 +4823,7 @@ Transform:
   m_GameObject: {fileID: 1217850691}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 44, y: 6.8, z: 0}
+  m_LocalPosition: {x: 48.67, y: 6.89, z: 0}
   m_LocalScale: {x: 9.3969, y: 9.3969, z: 9.3969}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4901,6 +4902,56 @@ MonoBehaviour:
   player: {fileID: 1662770180}
   borderToOpen: {fileID: 792507107}
   borderToClose: {fileID: 265950360}
+--- !u!60 &1217850695
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217850691}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.28866667}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0, y: 0.5773587}
+      - {x: -0.5, y: -0.28866667}
+      - {x: 0.5, y: -0.28866667}
+  m_UseDelaunayMesh: 0
 --- !u!1 &1220419693
 GameObject:
   m_ObjectHideFlags: 0
@@ -5051,7 +5102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0950edb4fdeacc642b154838af70a004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Freeze
-  tm: {fileID: 0}
+  tm: {fileID: 1150443945}
 --- !u!1 &1238097659
 GameObject:
   m_ObjectHideFlags: 0
@@ -5202,7 +5253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0950edb4fdeacc642b154838af70a004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Freeze
-  tm: {fileID: 0}
+  tm: {fileID: 1150443945}
 --- !u!1 &1239814267
 GameObject:
   m_ObjectHideFlags: 0
@@ -5444,7 +5495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0950edb4fdeacc642b154838af70a004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Freeze
-  tm: {fileID: 0}
+  tm: {fileID: 1150443945}
 --- !u!61 &1323380969
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5641,7 +5692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0950edb4fdeacc642b154838af70a004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Freeze
-  tm: {fileID: 0}
+  tm: {fileID: 1150443945}
 --- !u!1 &1392549563
 GameObject:
   m_ObjectHideFlags: 0
@@ -5966,7 +6017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0950edb4fdeacc642b154838af70a004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Freeze
-  tm: {fileID: 0}
+  tm: {fileID: 1150443945}
 --- !u!1 &1457382584
 GameObject:
   m_ObjectHideFlags: 0
@@ -6440,7 +6491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0950edb4fdeacc642b154838af70a004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Freeze
-  tm: {fileID: 0}
+  tm: {fileID: 1150443945}
 --- !u!61 &1505761223
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6591,7 +6642,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0950edb4fdeacc642b154838af70a004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Freeze
-  tm: {fileID: 0}
+  tm: {fileID: 1150443945}
 --- !u!61 &1572716716
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6963,18 +7014,18 @@ PrefabInstance:
     - target: {fileID: 5663536836805774251, guid: a8d2dfc91eec5d54eb1bd3907190e2ec, type: 3}
       propertyPath: tm
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1150443945}
     - target: {fileID: 5663536836805774251, guid: a8d2dfc91eec5d54eb1bd3907190e2ec, type: 3}
       propertyPath: iua
       value: 
       objectReference: {fileID: -944628639613478452, guid: 6563c23ab4f343948bcbc98ae70a5c28, type: 3}
     - target: {fileID: 5663536836805774251, guid: a8d2dfc91eec5d54eb1bd3907190e2ec, type: 3}
       propertyPath: jumpSpeed
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5663536836805774251, guid: a8d2dfc91eec5d54eb1bd3907190e2ec, type: 3}
       propertyPath: moveSpeed
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5663536836805774251, guid: a8d2dfc91eec5d54eb1bd3907190e2ec, type: 3}
       propertyPath: temporality
@@ -6982,11 +7033,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5663536836805774251, guid: a8d2dfc91eec5d54eb1bd3907190e2ec, type: 3}
       propertyPath: maxJumpSpeed
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5663536836805774251, guid: a8d2dfc91eec5d54eb1bd3907190e2ec, type: 3}
       propertyPath: maxMoveSpeed
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5663536836805774251, guid: a8d2dfc91eec5d54eb1bd3907190e2ec, type: 3}
       propertyPath: jumpAction.m_Name
@@ -7012,6 +7063,14 @@ PrefabInstance:
       propertyPath: 'TimelineFathers.Array.data[2]'
       value: 
       objectReference: {fileID: 380744369}
+    - target: {fileID: 6712491728819266421, guid: a8d2dfc91eec5d54eb1bd3907190e2ec, type: 3}
+      propertyPath: m_GravityScale
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6712491728819266421, guid: a8d2dfc91eec5d54eb1bd3907190e2ec, type: 3}
+      propertyPath: m_LinearDamping
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7025494976268445648, guid: a8d2dfc91eec5d54eb1bd3907190e2ec, type: 3}
       propertyPath: m_Name
       value: player
@@ -7179,7 +7238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0950edb4fdeacc642b154838af70a004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Freeze
-  tm: {fileID: 0}
+  tm: {fileID: 1150443945}
 --- !u!61 &1686114697
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8246,8 +8305,8 @@ Transform:
   m_GameObject: {fileID: 2011448382}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 36.6, y: 1.9, z: 0}
-  m_LocalScale: {x: 43.33772, y: 1, z: 1}
+  m_LocalPosition: {x: 41.1723, y: 1.9, z: 0}
+  m_LocalScale: {x: 52.48377, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1735955844}
@@ -8460,7 +8519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0950edb4fdeacc642b154838af70a004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Freeze
-  tm: {fileID: 0}
+  tm: {fileID: 1150443945}
 --- !u!61 &2031981648
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8611,7 +8670,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0950edb4fdeacc642b154838af70a004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Freeze
-  tm: {fileID: 0}
+  tm: {fileID: 1150443945}
 --- !u!61 &2061715624
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8686,7 +8745,7 @@ Transform:
   m_GameObject: {fileID: 2087802895}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 58.4, y: 6.29, z: 0}
+  m_LocalPosition: {x: 63.07, y: 6.29, z: 0}
   m_LocalScale: {x: 7.19019, y: 14.953259, z: 7.19019}
   m_ConstrainProportionsScale: 0
   m_Children: []

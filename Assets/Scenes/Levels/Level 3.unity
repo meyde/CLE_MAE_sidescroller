@@ -5268,7 +5268,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1257509729
 Transform:
   m_ObjectHideFlags: 0
@@ -5747,11 +5747,11 @@ PrefabInstance:
       objectReference: {fileID: -944628639613478452, guid: 6563c23ab4f343948bcbc98ae70a5c28, type: 3}
     - target: {fileID: 5663536836805774251, guid: a8d2dfc91eec5d54eb1bd3907190e2ec, type: 3}
       propertyPath: jumpSpeed
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5663536836805774251, guid: a8d2dfc91eec5d54eb1bd3907190e2ec, type: 3}
       propertyPath: moveSpeed
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5663536836805774251, guid: a8d2dfc91eec5d54eb1bd3907190e2ec, type: 3}
       propertyPath: temporality
@@ -5759,11 +5759,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5663536836805774251, guid: a8d2dfc91eec5d54eb1bd3907190e2ec, type: 3}
       propertyPath: maxJumpSpeed
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5663536836805774251, guid: a8d2dfc91eec5d54eb1bd3907190e2ec, type: 3}
       propertyPath: maxMoveSpeed
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5663536836805774251, guid: a8d2dfc91eec5d54eb1bd3907190e2ec, type: 3}
       propertyPath: jumpAction.m_Name
@@ -5789,6 +5789,14 @@ PrefabInstance:
       propertyPath: 'TimelineFathers.Array.data[2]'
       value: 
       objectReference: {fileID: 1134662707}
+    - target: {fileID: 6712491728819266421, guid: a8d2dfc91eec5d54eb1bd3907190e2ec, type: 3}
+      propertyPath: m_GravityScale
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6712491728819266421, guid: a8d2dfc91eec5d54eb1bd3907190e2ec, type: 3}
+      propertyPath: m_LinearDamping
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7025494976268445648, guid: a8d2dfc91eec5d54eb1bd3907190e2ec, type: 3}
       propertyPath: m_Name
       value: player
@@ -8438,7 +8446,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1814191780
 Transform:
   m_ObjectHideFlags: 0
@@ -8599,7 +8607,7 @@ Transform:
   m_GameObject: {fileID: 1827484734}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 89.4, y: 102.9, z: 0}
+  m_LocalPosition: {x: 86.5, y: 102.9, z: 0}
   m_LocalScale: {x: 27.05, y: 5.85, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

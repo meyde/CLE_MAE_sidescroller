@@ -29,12 +29,6 @@ public class TimeManager : MonoBehaviour
         StartCoroutine(Loging());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public virtual float[] EncodePlayer(PlayerControl toEncode)
     {
         //var encoded = new float[3] { toEncode.transform.position.x, toEncode.transform.position.y, toEncode.temporality}; //, toEncode.level1LeverActive, level2tdm.currentTime
@@ -81,12 +75,14 @@ public class TimeManager : MonoBehaviour
             timeRewinded = 0;
             rewinding = true;
             player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+            player.gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
         }
         else
         {
             Debug.Log("Rewind Over");
             rewinding = false;
             player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+            player.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
             charged -= timeRewinded;
             index -= timeRewinded;
             if (index < 0) { index += logSize; }
@@ -100,6 +96,7 @@ public class TimeManager : MonoBehaviour
         timeRewinded = 0;
         rewinding = true;
         player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        player.gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
     }
     public virtual void RewindTime(int time)
     {

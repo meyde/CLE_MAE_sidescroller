@@ -1864,7 +1864,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &361485349
 Transform:
   m_ObjectHideFlags: 0
@@ -4083,7 +4083,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &856198989
 Transform:
   m_ObjectHideFlags: 0
@@ -6909,11 +6909,11 @@ PrefabInstance:
       objectReference: {fileID: -944628639613478452, guid: 6563c23ab4f343948bcbc98ae70a5c28, type: 3}
     - target: {fileID: 5663536836805774251, guid: a8d2dfc91eec5d54eb1bd3907190e2ec, type: 3}
       propertyPath: jumpSpeed
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5663536836805774251, guid: a8d2dfc91eec5d54eb1bd3907190e2ec, type: 3}
       propertyPath: moveSpeed
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5663536836805774251, guid: a8d2dfc91eec5d54eb1bd3907190e2ec, type: 3}
       propertyPath: temporality
@@ -6921,11 +6921,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5663536836805774251, guid: a8d2dfc91eec5d54eb1bd3907190e2ec, type: 3}
       propertyPath: maxJumpSpeed
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5663536836805774251, guid: a8d2dfc91eec5d54eb1bd3907190e2ec, type: 3}
       propertyPath: maxMoveSpeed
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5663536836805774251, guid: a8d2dfc91eec5d54eb1bd3907190e2ec, type: 3}
       propertyPath: jumpAction.m_Name
@@ -6951,6 +6951,14 @@ PrefabInstance:
       propertyPath: 'TimelineFathers.Array.data[2]'
       value: 
       objectReference: {fileID: 948684552}
+    - target: {fileID: 6712491728819266421, guid: a8d2dfc91eec5d54eb1bd3907190e2ec, type: 3}
+      propertyPath: m_GravityScale
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6712491728819266421, guid: a8d2dfc91eec5d54eb1bd3907190e2ec, type: 3}
+      propertyPath: m_LinearDamping
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7025494976268445648, guid: a8d2dfc91eec5d54eb1bd3907190e2ec, type: 3}
       propertyPath: m_Name
       value: player
