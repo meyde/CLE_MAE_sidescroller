@@ -10,6 +10,7 @@ public class Lever : Interactable
         if (activated) return;
         cage.SetActive(false);
         activated = true;
+        gameObject.GetComponent<SpriteRenderer>().flipX = false;
         this.player.level1LeverActive = 1f;
     }
 }

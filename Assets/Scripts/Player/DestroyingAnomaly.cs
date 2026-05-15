@@ -2,12 +2,10 @@ using UnityEngine;
 
 public class DestroyingAnomaly : Interactable
 {
-    [SerializeField] GameObject borderToOpen;
-    [SerializeField] GameObject borderToClose;
+    [SerializeField] GameObject fissureToRemove;
     public override void Interaction()
     {
-        borderToOpen.SetActive(true);
-        borderToClose.SetActive(false);
+        fissureToRemove.SetActive(false);
         gameObject.SetActive(false);
     }
 
