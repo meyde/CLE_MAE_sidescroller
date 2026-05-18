@@ -16,5 +16,6 @@ public class FinalBtn : Interactable
             fdm.rightState = 1f;
             fdm.OnStateChange();
         }
+        gameObject.GetComponent<SpriteRenderer>().flipX = true;
     }
 }

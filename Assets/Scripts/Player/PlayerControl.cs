@@ -47,7 +47,7 @@ public class PlayerControl : MonoBehaviour
         }
         else
         {
-            rb.linearVelocityX += (moveValue * moveSpeed /5);
+            rb.linearVelocityX += (moveValue * moveSpeed /15);
         }
         rb.linearVelocity = new Vector2(Mathf.Clamp(rb.linearVelocityX, -maxMoveSpeed, maxMoveSpeed), Mathf.Clamp(rb.linearVelocityY, -maxJumpSpeed, maxJumpSpeed));
     }

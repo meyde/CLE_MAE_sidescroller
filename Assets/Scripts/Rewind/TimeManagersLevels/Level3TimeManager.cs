@@ -7,6 +7,7 @@ public class Level3TimeManager : TimeManager
     [SerializeField] private Image inventory;
     [SerializeField] private GameObject tree;
     [SerializeField] private GameObject pot;
+    [SerializeField] private Sprite[] potStates;
     public override void RewindTime(int time)
     {
         int pastIndex = (index - time - 1);
@@ -18,22 +19,23 @@ public class Level3TimeManager : TimeManager
         player.OnChangedTimeline(Mathf.FloorToInt(encodedPastPlayer[2]));
         if (encodedPastPlayer[3] != player.level3State)
         {
+            SpriteRenderer sr = pot.GetComponent<SpriteRenderer>();
             switch (encodedPastPlayer[3])
             {
                 case 0:
-                    inventory.color = Color.white;
+                    inventory.gameObject.SetActive(false);
                     tree.SetActive(false);
-                    pot.SetActive(true);
+                    sr.sprite = potStates[0];
                     break;
                 case 1:
-                    inventory.color = Color.red;
+                    inventory.gameObject.SetActive(true);
                     tree.SetActive(false);
-                    pot.SetActive(true);
+                    sr.sprite = potStates[0];
                     break;
                 case 2:
-                    inventory.color = Color.white;
+                    inventory.gameObject.SetActive(false);
                     tree.SetActive(true);
-                    pot.SetActive(false);
+                    sr.sprite = potStates[1];
                     break;
             }
             player.level3State = encodedPastPlayer[3];

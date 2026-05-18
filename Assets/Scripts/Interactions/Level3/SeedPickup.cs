@@ -8,7 +8,7 @@ public class SeedPickup : Interactable
     {
         if (player.level3State != 0f) return;
         player.level3State = 1f;
-        inventorySpace.color = Color.red;
+        inventorySpace.gameObject.SetActive(true);
         gameObject.SetActive(false);
     }
 }

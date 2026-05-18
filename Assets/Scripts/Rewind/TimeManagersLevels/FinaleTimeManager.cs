@@ -5,6 +5,7 @@ public class FinaleTimeManager : TimeManager
 {
     [SerializeField] private FinalDoorManager fdm;
     [SerializeField] private GameObject door;
+    [SerializeField] private GameObject[] levers;
     public override void RewindTime(int time)
     {
         int pastIndex = (index - time - 1);
@@ -18,11 +19,14 @@ public class FinaleTimeManager : TimeManager
         {
             door.SetActive(true);
             encodedPastPlayer[3] = 0f;
+            levers[0].GetComponent<SpriteRenderer>().flipX = false;
+
         }
         if (encodedPastPlayer[4] != fdm.leftState)
         {
             door.SetActive(true);
             encodedPastPlayer[4] = 0f;
+            levers[0].GetComponent<SpriteRenderer>().flipX = false;
         }
     }
 

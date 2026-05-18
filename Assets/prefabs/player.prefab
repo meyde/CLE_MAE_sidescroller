@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8214651205483859720}
   - component: {fileID: 6712491728819266421}
   - component: {fileID: 5663536836805774251}
-  - component: {fileID: 7918236501805620385}
   - component: {fileID: 5981923335152728423}
   m_Layer: 0
   m_Name: player
@@ -133,6 +132,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93070ef93d94b864590e3e2b23637de4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerControl
+  tm: {fileID: 0}
+  iua: {fileID: 0}
   rb: {fileID: 6712491728819266421}
   grounded: 0
   maxMoveSpeed: 10
@@ -143,19 +144,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   temporality: 1
---- !u!114 &7918236501805620385
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7025494976268445648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c2ef50b08ab336438a9a5e6bdc30462, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StateManager
-  activated: 0
+  timelineFathers: []
+  backgrounds: []
+  interactingWith: {fileID: 0}
+  level1LeverActive: 0
+  level3State: 0
 --- !u!70 &5981923335152728423
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
