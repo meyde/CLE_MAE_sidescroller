@@ -16,7 +16,8 @@ public class PlayerControl : MonoBehaviour
     public float jumpSpeed = 1f;
     public LayerMask mask;
     public int temporality;
-    [SerializeField] GameObject[] TimelineFathers;
+    [SerializeField] GameObject[] timelineFathers;
+    [SerializeField] GameObject[] backgrounds;
     public Interactable interactingWith = null;
     public float level1LeverActive = 0f;
     public float level3State; //0f: start, 1f: seed picked up; 2f: seed planted
@@ -46,7 +47,7 @@ public class PlayerControl : MonoBehaviour
         }
         else
         {
-            rb.linearVelocityX += (moveValue * moveSpeed / 20);
+            rb.linearVelocityX += (moveValue * moveSpeed /5);
         }
         rb.linearVelocity = new Vector2(Mathf.Clamp(rb.linearVelocityX, -maxMoveSpeed, maxMoveSpeed), Mathf.Clamp(rb.linearVelocityY, -maxJumpSpeed, maxJumpSpeed));
     }
@@ -62,23 +63,32 @@ public class PlayerControl : MonoBehaviour
         {
             case 0:
                 {
-                    TimelineFathers[0].SetActive(true);
-                    TimelineFathers[1].SetActive(false);
-                    TimelineFathers[2].SetActive(false);
+                    timelineFathers[0].SetActive(true);
+                    backgrounds[0].SetActive(true);
+                    timelineFathers[1].SetActive(false);
+                    backgrounds[1].SetActive(false);
+                    timelineFathers[2].SetActive(false);
+                    backgrounds[2].SetActive(false);
                     break;
                 }
             case 1:
                 {
-                    TimelineFathers[0].SetActive(false);
-                    TimelineFathers[1].SetActive(true);
-                    TimelineFathers[2].SetActive(false);
+                    timelineFathers[0].SetActive(false);
+                    backgrounds[0].SetActive(false);
+                    timelineFathers[1].SetActive(true);
+                    backgrounds[1].SetActive(true);
+                    timelineFathers[2].SetActive(false);
+                    backgrounds[2].SetActive(false);
                     break;
                 }
             case 2:
                 {
-                    TimelineFathers[0].SetActive(false);
-                    TimelineFathers[1].SetActive(false);
-                    TimelineFathers[2].SetActive(true);
+                    timelineFathers[0].SetActive(false);
+                    backgrounds[0].SetActive(false);
+                    timelineFathers[1].SetActive(false);
+                    backgrounds[1].SetActive(false);
+                    timelineFathers[2].SetActive(true);
+                    backgrounds[2].SetActive(true);
                     break;
                 }
             default:

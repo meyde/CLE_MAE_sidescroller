@@ -59,10 +59,8 @@ public class TimeManager : MonoBehaviour
         if (paused) return;
         if (charged < 1) return;
         float vlue = value.Get<float>();
-        Debug.Log(charged.ToString());
         if (vlue < 0) { timeRewinded = Mathf.Clamp(timeRewinded + 1, 0, charged); }
         if (vlue > 0) { timeRewinded = Mathf.Clamp(timeRewinded - 1, 0, charged); }
-        Debug.Log(timeRewinded);
         RewindTime(timeRewinded);
     }   
 
@@ -100,32 +98,5 @@ public class TimeManager : MonoBehaviour
     }
     public virtual void RewindTime(int time)
     {
-        //int pastIndex = (index - time-1);
-        //if (pastIndex < 0) { pastIndex += logSize; }
-        //float[] encodedPastPlayer = backlog[pastIndex];
-        //if (encodedPastPlayer == null) return;
-        //player.transform.position = new Vector3(encodedPastPlayer[0], encodedPastPlayer[1], player.transform.position.z);
-        //player.temporality = Mathf.FloorToInt(encodedPastPlayer[2]);
-        //player.OnChangedTimeline(Mathf.FloorToInt(encodedPastPlayer[2]));
-        //if (encodedPastPlayer[3] != player.level1LeverActive)
-        //{
-        //    level1Lever.activated = false;
-        //    level1Cage.SetActive(true);
-        //    player.level1LeverActive = 0f;
-        //}
-        //if (encodedPastPlayer[4] != level2tdm.currentTime)
-        //{
-        //    if (encodedPastPlayer[4] == 0) 
-        //    { 
-        //        level2tdm.isOpen = false; level2tdm.door.SetActive(true); 
-        //    }
-        //    else 
-        //    { 
-        //        level2tdm.isOpen = true; level2tdm.door.SetActive(false); 
-        //    }
-        //    level2tdm.currentTime = Mathf.FloorToInt(encodedPastPlayer[4]);
-
-        //}
-
     }
 }

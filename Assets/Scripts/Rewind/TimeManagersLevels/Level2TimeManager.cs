@@ -4,6 +4,7 @@ using UnityEngine;
 public class Level2TimeManager : TimeManager
 {
     [SerializeField] private TimedDoorManager tmd;
+    [SerializeField] private TimedDoorBtn tmb;
     public override void RewindTime(int time)
     {
         int pastIndex = (index - time - 1);
@@ -13,15 +14,18 @@ public class Level2TimeManager : TimeManager
         player.transform.position = new Vector3(encodedPastPlayer[0], encodedPastPlayer[1], player.transform.position.z);
         player.temporality = Mathf.FloorToInt(encodedPastPlayer[2]);
         player.OnChangedTimeline(Mathf.FloorToInt(encodedPastPlayer[2]));
+        Debug.Log(encodedPastPlayer[3].ToString());
         if (encodedPastPlayer[3] != tmd.currentTime)
         {
             if (encodedPastPlayer[3] == 0)
             {
                 tmd.isOpen = false; tmd.door.SetActive(true);
+                tmb.ResetPosition();
             }
             else
             {
                 tmd.isOpen = true; tmd.door.SetActive(false);
+                tmb.ActivatePosition();
             }
             tmd.currentTime = Mathf.FloorToInt(encodedPastPlayer[3]);
         }

@@ -44,9 +44,9 @@
                 },
                 {
                     "name": "Rewinding",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "0bad416c-d281-410d-8c75-1f0865c13cf5",
-                    "expectedControlType": "Axis",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true

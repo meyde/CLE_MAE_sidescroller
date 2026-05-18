@@ -10,6 +10,7 @@ public class TimedDoorManager : MonoBehaviour
     [SerializeField] private TimeManager tm;
     public bool isOpen = false;
     public int currentTime;
+    [SerializeField] TimedDoorBtn tdb;
     public void TemporaryOpening()
     {
         if (isOpen) return;
@@ -24,12 +25,17 @@ public class TimedDoorManager : MonoBehaviour
         while (currentTime < timeToWait)
         {
             if (tm.rewinding ||  tm.paused) { yield return new WaitForSeconds(1); }
-            currentTime++;
-            yield return new WaitForSeconds(1);
+            else
+            {
+                currentTime++;
+                yield return new WaitForSeconds(1);
+            }
+                
         }
         isOpen = false;
         door.SetActive(true);
         currentTime = 0;
+        tdb.ResetPosition();
 
     } 
 }
