@@ -10,6 +10,9 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private InputActionAsset iua;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private bool grounded= true;
+    [SerializeField] private bool wallHug = false;
+    [SerializeField] private float raycastVertical = 1.1f;
+    [SerializeField] private float raycastHorizontal = 0.5f;
     [SerializeField] private float maxMoveSpeed = 3f;
     [SerializeField] private float maxJumpSpeed = 5f;
     public float moveSpeed =1f;
@@ -47,15 +50,30 @@ public class PlayerControl : MonoBehaviour
         }
         else
         {
-            rb.linearVelocityX += (moveValue * moveSpeed /15);
+            rb.linearVelocityX += (moveValue * moveSpeed);
         }
-        rb.linearVelocity = new Vector2(Mathf.Clamp(rb.linearVelocityX, -maxMoveSpeed, maxMoveSpeed), Mathf.Clamp(rb.linearVelocityY, -maxJumpSpeed, maxJumpSpeed));
+        if (!wallHug)
+        {
+            rb.linearVelocity = new Vector2(Mathf.Clamp(rb.linearVelocityX, -maxMoveSpeed, maxMoveSpeed), Mathf.Clamp(rb.linearVelocityY, -maxJumpSpeed, maxJumpSpeed));
+        }
+        else
+        {
+            rb.linearVelocity = new Vector2(Mathf.Clamp(rb.linearVelocityX/20, -maxMoveSpeed, maxMoveSpeed), Mathf.Clamp(rb.linearVelocityY, -maxJumpSpeed, maxJumpSpeed));
+        }
     }
     private void CheckGround() 
     {
-        var rayCastHit = Physics2D.Raycast(transform.position, new Vector2(0, -1), 1.1f, mask);
-        if (rayCastHit) { grounded=true; } else { grounded = false; };
+        var rayCastHit1 = Physics2D.BoxCast(transform.position, new Vector2(2f, 0.1f),180, new Vector2(0, -1), raycastVertical, mask);
+
+        if (rayCastHit1) { grounded=true; } else { grounded = false; };
         
+    }
+    private void CheckWall()
+    {
+        var rayCastHit1 = Physics2D.Raycast(transform.position, new Vector2(1, 0), raycastHorizontal, mask);
+        var rayCastHit2 = Physics2D.Raycast(transform.position, new Vector2(-1, 0), raycastHorizontal, mask);
+        if (rayCastHit1 | rayCastHit2)  { wallHug = true; } else { wallHug = false; }
+        ;
     }
     public void OnChangedTimeline(int timeline)
     {
@@ -116,6 +134,11 @@ public class PlayerControl : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.purple;
-        Gizmos.DrawRay(transform.position, Vector3.down * 1.1f);
+        Gizmos.DrawRay(transform.position, Vector3.down * raycastVertical);
+        Gizmos.DrawRay(transform.position, new Vector3(0.8f,-raycastVertical,0));
+        Gizmos.DrawRay(transform.position, new Vector3(-0.8f, -raycastVertical, 0));
+        Gizmos.DrawRay(transform.position, Vector3.down * raycastVertical);
+        Gizmos.DrawRay(transform.position, Vector3.right *raycastHorizontal);
+        Gizmos.DrawRay(transform.position, Vector3.left * raycastHorizontal);
     }
 }

@@ -17,6 +17,7 @@ public class Level1TimeManager : TimeManager
         if (encodedPastPlayer[3] != player.level1LeverActive)
         {
             level1Lever.activated = false;
+            level1Lever.GetComponent<SpriteRenderer>().flipX = true;
             level1Cage.SetActive(true);
             player.level1LeverActive = 0f;
         }
