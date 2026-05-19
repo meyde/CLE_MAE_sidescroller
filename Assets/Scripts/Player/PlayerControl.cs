@@ -63,7 +63,7 @@ public class PlayerControl : MonoBehaviour
     }
     private void CheckGround() 
     {
-        var rayCastHit1 = Physics2D.BoxCast(transform.position, new Vector2(2f, 0.1f),180, new Vector2(0, -1), raycastVertical, mask);
+        var rayCastHit1 = Physics2D.BoxCast(transform.position, new Vector2(1.2f, 0.1f),180, new Vector2(0, -1), raycastVertical, mask);
 
         if (rayCastHit1) { grounded=true; } else { grounded = false; };
         
@@ -134,10 +134,6 @@ public class PlayerControl : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.purple;
-        Gizmos.DrawRay(transform.position, Vector3.down * raycastVertical);
-        Gizmos.DrawRay(transform.position, new Vector3(0.8f,-raycastVertical,0));
-        Gizmos.DrawRay(transform.position, new Vector3(-0.8f, -raycastVertical, 0));
-        Gizmos.DrawRay(transform.position, Vector3.down * raycastVertical);
         Gizmos.DrawRay(transform.position, Vector3.right *raycastHorizontal);
         Gizmos.DrawRay(transform.position, Vector3.left * raycastHorizontal);
     }

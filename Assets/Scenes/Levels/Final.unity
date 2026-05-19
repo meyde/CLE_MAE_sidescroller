@@ -10604,7 +10604,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7025494976268445648, guid: a8d2dfc91eec5d54eb1bd3907190e2ec, type: 3}
-      insertIndex: 4
+      insertIndex: -1
       addedObject: {fileID: 1412785914}
   m_SourcePrefab: {fileID: 100100000, guid: a8d2dfc91eec5d54eb1bd3907190e2ec, type: 3}
 --- !u!114 &1412785911 stripped
@@ -14556,11 +14556,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3892405314155149178, guid: 2cffd5fcba8996e40b61463c4f353123, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -159.2
+      value: -159.6
       objectReference: {fileID: 0}
     - target: {fileID: 3892405314155149178, guid: 2cffd5fcba8996e40b61463c4f353123, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.67
+      value: 8.2
       objectReference: {fileID: 0}
     - target: {fileID: 3892405314155149178, guid: 2cffd5fcba8996e40b61463c4f353123, type: 3}
       propertyPath: m_LocalPosition.z
