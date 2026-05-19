@@ -42,6 +42,7 @@ public class PlayerControl : MonoBehaviour
         if (tm.paused || tm.rewinding) return;
         float moveValue = moveAction.ReadValue<float>();
         CheckGround();
+        CheckWall();
         if (grounded)
         {
             rb.linearVelocityX += (moveValue * moveSpeed);
@@ -58,7 +59,7 @@ public class PlayerControl : MonoBehaviour
         }
         else
         {
-            rb.linearVelocity = new Vector2(Mathf.Clamp(rb.linearVelocityX/20, -maxMoveSpeed, maxMoveSpeed), Mathf.Clamp(rb.linearVelocityY, -maxJumpSpeed, maxJumpSpeed));
+            rb.linearVelocity = new Vector2(Mathf.Clamp(rb.linearVelocityX/30, -maxMoveSpeed, maxMoveSpeed), Mathf.Clamp(rb.linearVelocityY, -maxJumpSpeed, maxJumpSpeed));
         }
     }
     private void CheckGround() 

@@ -4,12 +4,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 
 public class TimeManager : MonoBehaviour
 {
     public float[][] backlog;
-    [SerializeField] public PlayerControl player;
+    public PlayerControl player;
+    [SerializeField] private Image watch;
+    [SerializeField] private Sprite[] watchCharges;
     public int index = 0;
     public int logSize = 12;
     private int charged = 0;
@@ -48,6 +51,7 @@ public class TimeManager : MonoBehaviour
                 backlog[index] = encodedPlayer;
                 index = (index + 1) % logSize;
                 charged = Mathf.Clamp(charged + 1, 0, logSize-1);
+                watch.sprite = watchCharges[charged];
                 yield return new WaitForSeconds(1);
             }
         }
@@ -73,15 +77,14 @@ public class TimeManager : MonoBehaviour
             timeRewinded = 0;
             rewinding = true;
             player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-            player.gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
         }
         else
         {
             Debug.Log("Rewind Over");
             rewinding = false;
             player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-            player.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
             charged -= timeRewinded;
+            watch.sprite = watchCharges[charged];
             index -= timeRewinded;
             if (index < 0) { index += logSize; }
         }
@@ -94,7 +97,6 @@ public class TimeManager : MonoBehaviour
         timeRewinded = 0;
         rewinding = true;
         player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-        player.gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
     }
     public virtual void RewindTime(int time)
     {
