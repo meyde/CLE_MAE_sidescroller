@@ -448,7 +448,6 @@ GameObject:
   - component: {fileID: 515649456}
   - component: {fileID: 515649455}
   - component: {fileID: 515649454}
-  - component: {fileID: 515649458}
   m_Layer: 5
   m_Name: BackToMenuBtn
   m_TagString: Untagged
@@ -533,7 +532,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 515649458}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LoadScene, Assembly-CSharp
         m_MethodName: Loadingcene
         m_Mode: 1
@@ -583,19 +582,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 515649452}
   m_CullTransparentMesh: 1
---- !u!114 &515649458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 515649452}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c9c5c806f6e8d84da9c6e8e4a12ef5d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LoadScene
-  sceneToLoad: 0
 --- !u!1 &815696468
 GameObject:
   m_ObjectHideFlags: 0
@@ -645,7 +631,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 815696468}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c9c5c806f6e8d84da9c6e8e4a12ef5d, type: 3}
+  m_Script: {fileID: 11500000, guid: c0280f1b2ddb319499c8004ea8a19263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LoadScene
   sceneToLoad: 2
@@ -989,8 +975,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "How to play:\n-Z To cycle timelines\n(Past -> Present ->Future)\n\n-E
-    To rewind time \n(Up to 12 seconds ago)\n\n-R To interact "
+  m_text: "How to play:\n-Arrow keys to move\n\n-Z To cycle timelines\n(Past -> Present
+    ->Future)\n\n-E To rewind time \n(Up to 12 seconds ago, use left and right arrows
+    to choose a second to go back to)\n\n-R To interact "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1017,8 +1004,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 7
-  m_fontSizeBase: 7
+  m_fontSize: 4.96
+  m_fontSizeBase: 4.96
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

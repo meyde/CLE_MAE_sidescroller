@@ -1,7 +1,6 @@
 
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -13,6 +12,7 @@ public class TimeManager : MonoBehaviour
     public PlayerControl player;
     [SerializeField] private Image watch;
     [SerializeField] private Sprite[] watchCharges;
+    [SerializeField] private Animator animator;
     public int index = 0;
     public int logSize = 12;
     private int charged = 0;
@@ -77,12 +77,14 @@ public class TimeManager : MonoBehaviour
             timeRewinded = 0;
             rewinding = true;
             player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+            animator.enabled = false;
         }
         else
         {
             Debug.Log("Rewind Over");
             rewinding = false;
             player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+            animator.enabled = true;
             charged -= timeRewinded;
             watch.sprite = watchCharges[charged];
             index -= timeRewinded;
@@ -97,6 +99,7 @@ public class TimeManager : MonoBehaviour
         timeRewinded = 0;
         rewinding = true;
         player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        animator.enabled = false;
     }
     public virtual void RewindTime(int time)
     {
